@@ -26,42 +26,41 @@
 | Column      | Type      | Options                       |
 | ------      | ------    | ------------------------------|
 | image       | string    | null: false                   |
-| item_name   | string    | null: false                   |
+| name        | string    | null: false                   |
 | description | text      | null: false                   |
 | price       | integer   | null: false                   |
-| user_id     | references| null: false , foreign_key:true|
+| commission  | integer   | null: false                   |
+| profit      | integer   | null: false                   |
+| user        | references| null: false , foreign_key:true|
 
 ### Association
 
 - belongs_to :user
-- has_one :purchase
+- has_one : purchase
 
 
 ## addresses テーブル
 
 | Column        | Type       | Options                        |
 | -------       | ---------- | -------------------------------|
-| user_id       | references | null: false, foreign_key: true |
+| user          | references | null: false, foreign_key: true |
 | postal_code   | string     | null: false                    
-| prefecture    | string     | null: false                    |
+| prefecture    | integer    | null: false                    |
 | city          | string     | null: false                    |
 | address       | string     | null: false                    
 | building_name | string     | null: false                    |
 | phone_number  | string    | null: false                    |
 
 ### Association
-belong_to : purchase
+- belongs_to : purchase
 
 
-- has_many :user
-
-
-##purchase テーブル
+## purchase テーブル
 
 | Column        | Type       | Options                        |
 | -------       | ---------- | -------------------------------|
-| user_id       | references | null: false, foreign_key: true |
-| item_id       | references | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
+| item       | references | null: false, foreign_key: true |
 
 ### Association
 
