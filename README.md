@@ -29,9 +29,12 @@
 | name        | string    | null: false                   |
 | description | text      | null: false                   |
 | price       | integer   | null: false                   |
-| commission  | integer   | null: false                   |
-| profit      | integer   | null: false                   |
 | user        | references| null: false , foreign_key:true|
+| category    | integer   | null: false                   |
+| status      | integer   | null: false                   |
+| delivery_fee| integer   | null: false                   |
+| ship_from   | integer   | null: false                   |
+| leadtime    | integer   | null: false                   |
 
 ### Association
 
@@ -47,9 +50,9 @@
 | postal_code   | string     | null: false                    
 | prefecture    | integer    | null: false                    |
 | city          | string     | null: false                    |
-| address       | string     | null: false                    
-| building_name | string     | null: false                    |
-| phone_number  | string    | null: false                    |
+| address       | string     | null: false                    |
+| building_name | string     |                                |
+| phone_number  | string     | null: false                    |
 
 ### Association
 - belongs_to : purchase
