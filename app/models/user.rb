@@ -7,15 +7,15 @@ class User < ApplicationRecord
 
 
   with_options presence: true do
-      PASSWORD_REGEX = /\A[a-zA-Z0-9]+\z/
-      validates :password, length: { minimum:6 }, format: {with: PASSWORD_REGEX, message: 'Input '}
-      validates :email, uniqueness: true, format: { with: /\A\S+@\S+\.\S+\z/ }
+      PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
+      validates :password, length: { minimum:6 }, format: {with: PASSWORD_REGEX, message: 'Input half_width characters'}
+      validates :email, uniqueness: true, format: { with: /\A\S+@\S+\.\S+\z/ message:"is ivalid "}
       validates :nickname, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
-      validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input half-width characters."}
-      validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input half-width characters."}
-      validates :last_katakana, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input half-width characters."}
-      validates :first_katakana, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input half-width characters."}
-      # validates :birthday, format: { with:/\A[0-9]+\z/ , message: "is invalid. Input half-width characters."}
+      validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
+      validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
+      validates :last_katakana, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input full-width katakana."}
+      validates :first_katakana, format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. Input full-width katakana."}
+    
 
   end
 
