@@ -1,3 +1,4 @@
+
 # テーブル設計
 
 ## users テーブル
@@ -6,8 +7,6 @@
 | -------------------- | ------ | ------------------------|
 | nick_name            | string | null: false             |
 | email                | string | null: false             |
-| password             | string | null: false             |
-|password_confirmation | string | null: false             |
 | last_name            | string | null: false             |
 | first_name           | string | null: false             |
 |last_katakana         | string | null: false             |
@@ -42,6 +41,7 @@
 - has_one : purchase
 
 
+
 ## addresses テーブル
 
 | Column        | Type       | Options                        |
@@ -61,8 +61,9 @@
 
 | Column        | Type       | Options                        |
 | -------       | ---------- | -------------------------------|
-| user       | references | null: false, foreign_key: true |
-| item       | references | null: false, foreign_key: true |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
+
 
 ### Association
 
