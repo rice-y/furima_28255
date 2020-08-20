@@ -72,6 +72,12 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Lead time must be other than 1")
       end
+
+      it 'imageが１つないと登録できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
       
       
     end
