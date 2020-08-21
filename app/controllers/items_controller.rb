@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
-before_action :move_to_index, except: [ :index ]
-
+before_action :move_to_index, except: [ :index, :show ]
+before_action :show_item, only: [ :show, :edit]
   def index
-    @items = Item.all.order("created_at DESC"）
+    @items=  Item.all.order("created_at DESC")
+    
   end
 
   def new
@@ -18,8 +19,20 @@ before_action :move_to_index, except: [ :index ]
     end
   end
 
+  def show
+
+  end
+
+  def edit
+
+  end
 
 
+
+  def show_item
+    @item = Item.find(params[:id])
+  end
+  
   def move_to_index
     unless user_signed_in?
       redirect_to action: :index
