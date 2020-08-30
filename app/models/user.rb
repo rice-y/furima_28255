@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
 
   has_many:items
+  has_many:purchases
 
   with_options presence: true do
     PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
