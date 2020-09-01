@@ -1,11 +1,8 @@
 class PurchasesController < ApplicationController
   before_action :move_to_index, only: [:index, :create]
+  before_action :show_item, only:[:index, :create]
   def index
-    @item = Item.find(params[:item_id])
-  end
-
-  def new
-    @purchase = PurchaseAddress.new(purchase_params)
+    @purchase = PurchaseAddress.new
   end
 
   def create
@@ -14,7 +11,7 @@ class PurchasesController < ApplicationController
     if @purchase.valid?
       pay_item
       @purchase.save
-      redirect_to root_path
+        return redirect_to root_path
     else
       render 'index'
     end
@@ -24,15 +21,17 @@ class PurchasesController < ApplicationController
     redirect_to user_session_path unless user_signed_in?
   end
 
+  def show_item
+    @item = Item.find(params[:item_id])
+  end
+
   private
 
   def purchase_params
     params.permit(:token, :authenticity_token, :price, :item_id, :postal_code, :prefecture_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id)
   end
 
-  # def order_params
-  #   params.permit(:token,:price)
-  # end
+  
 
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # PAY.JPテスト秘密鍵
