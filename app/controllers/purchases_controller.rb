@@ -1,6 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :move_to_index, only: [:index, :create]
-  before_action :show_item, only:[:index, :create]
+  before_action :set_item, only:[:index, :create]
+  
   def index
     @purchase = PurchaseAddress.new
   end
@@ -21,9 +22,7 @@ class PurchasesController < ApplicationController
     redirect_to user_session_path unless user_signed_in?
   end
 
-  def show_item
-    @item = Item.find(params[:item_id])
-  end
+  
 
   private
 
@@ -31,6 +30,9 @@ class PurchasesController < ApplicationController
     params.permit(:token, :authenticity_token, :price, :item_id, :postal_code, :prefecture_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id)
   end
 
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
   
 
   def pay_item
